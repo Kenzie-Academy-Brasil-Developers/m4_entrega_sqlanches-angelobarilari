@@ -49,15 +49,23 @@
 
 -- Atualização
 -- 1)
-    UPDATE clientes	
-        SET 
-            lealdade = 48
-        WHERE 
-            clientes.nome = 'Georgia';
+    UPDATE clientes SET lealdade =
+        (SELECT 
+            SUM(produtos.pts_de_lealdade)
+            FROM
+            produtos
+            JOIN
+            produtos_pedidos ON produtos_pedidos.produto_id = produtos.id
+            JOIN
+            pedidos ON pedidos.id = produtos_pedidos.pedido_id
+            JOIN 
+            clientes ON clientes.id = pedidos.cliente_id AND clientes.nome = 'Georgia'
+        );
+                
 
 -- Deleção
 -- 1)
     DELETE FROM 
         clientes
-  	WHERE clientes.nome = 'Marcelo';
+  	    WHERE clientes.nome = 'Marcelo';
 

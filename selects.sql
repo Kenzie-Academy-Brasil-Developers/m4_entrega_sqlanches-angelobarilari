@@ -3,11 +3,14 @@
 
 -- 1)
     SELECT
-        *
+        pedidos.*,
+        produtos.*
     FROM
-        pedidos p
+        produtos 
     JOIN 
-        produtos pp ON TRUE;
+        produtos_pedidos ON produtos_pedidos.produto_id = produtos.id
+    JOIN
+    	pedidos ON pedidos.id = produtos_pedidos.pedido_id;
 
 -- 2)
     SELECT
