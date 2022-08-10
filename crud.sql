@@ -59,10 +59,9 @@
             JOIN
             pedidos ON pedidos.id = produtos_pedidos.pedido_id
             JOIN 
-            clientes ON clientes.id = pedidos.cliente_id AND clientes.nome = 'Georgia'
-        );
-                
-
+            clientes ON clientes.id = pedidos.cliente_id
+        )
+        WHERE clientes.nome = 'Georgia';
 -- Deleção
 -- 1)
     DELETE FROM 
